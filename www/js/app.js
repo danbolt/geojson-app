@@ -1,10 +1,4 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('geojson', ['ionic'])
-
+angular.module('geojson', ['ionic','ngCordova'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -18,3 +12,17 @@ angular.module('geojson', ['ionic'])
       Parse.initialize("7EtDKIluLC2jWykndVkIN2tuxUxPiOQP2OHIUBI6", "0kgIpZlubm0FgvKEUDZ9geQkHIdMnVB5sd2Nx3Br");
   });
 })
+.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/');
+
+  $stateProvider
+    .state('/', {
+        url: '/',
+        templateUrl: 'views/login.html',
+        controller: 'loginController as login'
+    })
+    .state('logging', {
+        url: '/logging',
+        templateUrl: 'views/form.html'
+    })
+});
